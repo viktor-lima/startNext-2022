@@ -9,6 +9,8 @@ import { GetStaticProps } from "next"
 import Stripe from "stripe"
 import { ProductsResponse } from "../model/products"
 
+import Link from "next/link"
+
 interface HomeProps {
   products : ProductsResponse[],
 }
@@ -27,13 +29,15 @@ export default function Home({products} : HomeProps) {
       {
         products.map(product => {
           return (
-            <Product key={product.id} className="keen-slider__slide">
-              <Image src={product.imageUrl} width={520} height={480} alt=""/>
-              <footer>
-                <strong>{product.name}</strong>
-                <span>{product.price}</span>
-              </footer>
-            </Product>
+            <Link key={product.id} href={`/product/${product.id}`} >
+              <Product className="keen-slider__slide">
+                <Image src={product.imageUrl} width={520} height={480} alt=""/>
+                <footer>
+                  <strong>{product.name}</strong>
+                  <span>{product.price}</span>
+                </footer>
+              </Product>
+            </Link>
           )
         })
       }
