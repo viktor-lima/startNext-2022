@@ -4,4 +4,5 @@ export interface ProductsResponse {
   imageUrl: string,
   price: string,
   description: string,
+  defaultPriceId: string,
 }
